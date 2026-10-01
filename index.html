@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Adam Asifo — Portfolio</title><meta name="description" content="Project coordination, IT project, business operations and data projects by Adam Asifo, with downloadable working files.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap"><style>
+:root{
+  --ground:#F3F5F7; --surface:#FFFFFF; --ink:#132030; --ink-2:#465668; --line:#D6DDE5;
+  --navy:#1F3A5F; --accent:#23798A; --accent-ink:#FFFFFF; --bar:#5FA8D3; --bar-done:#B8C2CC;
+  --amber:#E0A42B; --red:#D65A4E; --chip:#E8EEF4; --shadow:0 1px 2px rgba(19,32,48,.06),0 8px 24px rgba(19,32,48,.06);
+  --display:"Archivo",ui-sans-serif,"Helvetica Neue",Arial,sans-serif;
+  --body:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  color-scheme:dark;--ground:#0E1520;--surface:#152030;--ink:#E4EAF1;--ink-2:#A5B3C3;--line:#27364A;
+  --navy:#9CC2E8;--accent:#58B6C6;--accent-ink:#0E1520;--bar:#3F86B3;--bar-done:#3A4A5E;--chip:#1C2A3C;--shadow:none;}}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0E1520;--surface:#152030;--ink:#E4EAF1;--ink-2:#A5B3C3;--line:#27364A;
+  --navy:#9CC2E8;--accent:#58B6C6;--accent-ink:#0E1520;--bar:#3F86B3;--bar-done:#3A4A5E;--chip:#1C2A3C;--shadow:none;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);color:var(--ink);text-wrap:balance;margin:0}
+.mono{font-family:var(--mono)}
+.label{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--ground) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:20px;min-height:56px;flex-wrap:wrap}
+.nav .me{font-family:var(--display);font-weight:800;font-stretch:112%;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.nav ul{display:flex;gap:18px;list-style:none;margin:0 0 0 auto;padding:0;flex-wrap:wrap}
+.nav ul a{color:var(--ink-2);text-decoration:none;font-size:.9rem}
+.nav ul a:hover{color:var(--ink)}
+/* hero */
+.hero{padding-block:56px 28px}
+.hero .label{margin-bottom:14px}
+.hero h1{font-size:clamp(2.1rem,5.2vw,3.6rem);font-weight:800;font-stretch:112%;line-height:1.02;letter-spacing:-.02em;max-width:17ch}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.lede{font-size:1.15rem;color:var(--ink-2);max-width:60ch;margin:18px 0 22px}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:8px;font-weight:600;text-decoration:none;font-size:.95rem;border:1px solid var(--line);color:var(--ink);background:var(--surface)}
+.btn.primary{background:var(--navy);border-color:var(--navy);color:var(--ground)}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;font-size:.88rem;color:var(--ink-2)}
+.facts span::before{content:"▸ ";color:var(--accent)}
+/* ledger (gantt-style project index) */
+.ledger{margin-top:40px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:18px 18px 12px}
+.ledger-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.ledger-head h2{font-size:1rem;font-weight:700}
+.row{display:grid;grid-template-columns:190px 1fr 150px;align-items:center;gap:14px;padding:9px 0;border-top:1px dashed var(--line);text-decoration:none;color:var(--ink)}
+.row:first-of-type{border-top:0}
+.row .lane{font-family:var(--mono);font-size:.76rem;color:var(--ink-2);letter-spacing:.03em}
+.track{position:relative;height:30px;background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),var(--line) calc(10% - 1px) 10%);border-radius:4px}
+.bar{position:absolute;top:3px;bottom:3px;border-radius:4px;background:var(--bar);color:#0B1624;font-weight:600;font-size:.86rem;display:flex;align-items:center;padding:0 10px;white-space:nowrap;overflow:hidden;transition:filter .15s}
+.bar.ms{padding-right:26px}
+.bar.ms::after{content:"";position:absolute;right:9px;top:50%;width:12px;height:12px;background:var(--navy);transform:translateY(-50%) rotate(45deg)}
+.row:hover .bar{filter:brightness(1.08)}
+.row .count{font-family:var(--mono);font-size:.76rem;color:var(--ink-2);text-align:right}
+.ledger-foot{font-size:.78rem;color:var(--ink-2);margin-top:8px}
+@media (max-width:720px){.row{grid-template-columns:1fr;gap:4px}.row .count{text-align:left}.bar{left:0!important;width:100%!important}}
+/* sections */
+section.block{padding-block:56px;border-top:1px solid var(--line)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.sec-head h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;font-stretch:106%}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.how div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
+.how h3{font-size:1.02rem;margin-bottom:6px}
+.how p{margin:0;color:var(--ink-2);font-size:.95rem}
+@media (max-width:820px){.how{grid-template-columns:1fr}}
+/* project write-ups */
+article.proj{padding-block:60px;border-top:1px solid var(--line);scroll-margin-top:70px}
+.proj-top{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:36px;align-items:start}
+@media (max-width:900px){.proj-top{grid-template-columns:1fr}}
+.proj .kicker{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--chip);color:var(--ink-2)}
+.tag.lane{background:var(--navy);color:var(--ground)}
+.proj h2{font-size:clamp(1.7rem,3.6vw,2.4rem);font-weight:800;font-stretch:108%;letter-spacing:-.01em;line-height:1.08}
+.proj .summary{font-size:1.1rem;color:var(--ink-2);margin:12px 0 0;max-width:62ch}
+.side{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:var(--shadow)}
+.side h3{font-size:.8rem;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:500;margin-bottom:10px}
+.dl{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--ink);margin-bottom:8px;background:var(--ground)}
+.dl:hover{border-color:var(--accent)}
+.dl b{font-size:.9rem;font-weight:600;display:block;line-height:1.3}
+.dl small{font-size:.76rem;color:var(--ink-2)}
+.dl .ext{font-family:var(--mono);font-size:.7rem;padding:2px 6px;border-radius:4px;background:var(--accent);color:var(--accent-ink);flex:0 0 auto}
+.side dl{margin:14px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:.84rem}
+.side dt{color:var(--ink-2)} .side dd{margin:0}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 40px;margin-top:34px}
+@media (max-width:820px){.cols{grid-template-columns:1fr}}
+.cols h3{font-size:1.1rem;margin-bottom:8px;display:flex;gap:10px;align-items:baseline}
+.cols h3 .n{font-family:var(--mono);font-size:.78rem;color:var(--accent);font-weight:500}
+.cols p,.cols li{color:var(--ink);font-size:.98rem}
+.cols p{margin:0 0 10px;max-width:65ch}
+.cols ul{margin:0;padding-left:18px} .cols li{margin-bottom:6px}
+.quote{font-family:var(--mono);font-size:.86rem;background:var(--chip);border-radius:8px;padding:10px 12px;margin:8px 0 10px;color:var(--ink)}
+figure{margin:0}
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:30px}
+.shots.one{grid-template-columns:1fr}
+@media (max-width:720px){.shots{grid-template-columns:1fr}}
+.shots figure{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.shots a{display:block;background:#fff}
+.shots img{display:block;width:100%;height:auto;max-width:100%}
+.shots figcaption{font-size:.82rem;color:var(--ink-2);padding:9px 12px;border-top:1px solid var(--line)}
+.note{border-left:3px solid var(--amber);background:var(--surface);padding:10px 14px;border-radius:0 8px 8px 0;font-size:.92rem;margin-top:22px;max-width:75ch}
+/* about */
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:36px}
+@media (max-width:820px){.about{grid-template-columns:1fr}}
+.about p{max-width:62ch}
+.contact{background:var(--navy);color:var(--ground);border-radius:12px;padding:22px}
+.contact h3{color:var(--ground);font-size:1.2rem;margin-bottom:8px}
+.contact .addr{font-family:var(--mono);font-size:1rem;background:color-mix(in srgb,var(--ground) 14%,transparent);padding:8px 10px;border-radius:6px;display:inline-block;margin:6px 0 10px;user-select:all}
+.contact p{margin:0 0 8px;opacity:.9}
+footer{padding-block:28px 48px;border-top:1px solid var(--line);font-size:.82rem;color:var(--ink-2)}
+
+/* ---- tabs ---- */
+.tabs-wrap{position:sticky;top:calc(env(safe-area-inset-top,0px) + 56px);z-index:9;background:var(--ground);border-bottom:1px solid var(--line);padding-block:12px}
+.tablist{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.tablist::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 .92rem var(--body);text-decoration:none;cursor:pointer;white-space:nowrap}
+.tab .n{font:500 .72rem var(--mono);color:var(--ink-2)}
+.tab[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:var(--ground)}
+.tab[aria-selected="true"] .n{color:var(--ground);opacity:.8}
+.tab:hover{border-color:var(--accent)}
+.panel-intro{padding-block:26px 0;color:var(--ink-2);max-width:70ch}
+.panel-intro b{color:var(--ink)}
+html.js .panel[hidden]{display:none!important}
+.trynow{margin-top:22px;background:var(--surface);border:1px dashed var(--accent);border-radius:10px;padding:12px 14px;font-size:.95rem;max-width:80ch}
+.trynow b{color:var(--accent)}
+.lane-head{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);padding:10px 0 2px;border-top:1px solid var(--line);margin-top:6px}
+.lane-head:first-of-type{border-top:0;margin-top:0}
+@media (max-width:600px){.tablist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;overflow:visible}
+ .tab{white-space:normal;justify-content:center;text-align:center;border-radius:10px;padding:8px 6px;font-size:.8rem;line-height:1.2}
+ .tab .n{display:none}}
+.copy{font:600 .8rem var(--body);padding:6px 10px;border-radius:6px;border:1px solid color-mix(in srgb,var(--ground) 40%,transparent);background:transparent;color:inherit;cursor:pointer;margin-left:6px}
+.contact .row2{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+article.proj{scroll-margin-top:130px}
+.anchor,.anchor-work{display:block;position:relative;top:-120px;visibility:hidden;height:0}
+</style></head><body>
+<nav class="nav" aria-label="Main"><div class="wrap">
+ <a class="me" href="#top">Adam Asifo</a>
+ <ul><li><a href="#work">Projects</a></li><li><a href="#how">How I work</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul>
+</div></nav>
+<header class="hero" id="top"><div class="wrap">
+ <p class="label">Project coordination · IT projects · Business operations · Data</p>
+ <h1>I build the trackers and checklists that <em>keep projects moving.</em></h1>
+ <p class="lede">I'm Adam Asifo, a project coordinator based in Columbia, Maryland. I've supported IT operations, events, real-estate investing and a product build. Below are six working projects you can download and open, each with a short write-up of what I built and why.</p>
+ <div class="btns"><a class="btn primary" href="#work">See the projects</a><a class="btn" href="AdamJAsifo_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a><a class="btn" href="#contact">Get in touch</a></div>
+ <div class="facts"><span>CompTIA Security+</span><span>UMD Information Science coursework</span><span>Excel · SharePoint · Microsoft 365</span><span>Available now · hybrid, remote or onsite near Columbia/Odenton</span></div>
+ <div class="ledger" aria-label="Project index">
+  <div class="ledger-head"><h2>Six projects in three areas</h2><span class="label">Click a bar to jump to its write-up</span></div>
+  <a class="row" href="#project-control" data-tab="coordination"><span class="lane">Project Coordination</span><span class="track"><span class="bar ms" style="left:0%;width:58%">Office Build-Out & Move</span></span><span class="count">1 XLSX · 2 PDF</span></a><a class="row" href="#it-rollout" data-tab="coordination"><span class="lane">IT Project Coordination</span><span class="track"><span class="bar ms" style="left:10%;width:56%">Laptop Refresh Rollout</span></span><span class="count">1 XLSX · 1 PDF</span></a><a class="row" href="#pmo-portfolio" data-tab="operations"><span class="lane">Coordination × Data</span><span class="track"><span class="bar ms" style="left:22%;width:56%">PMO Portfolio Report</span></span><span class="count">1 XLSX · 1 PDF</span></a><a class="row" href="#work-orders" data-tab="operations"><span class="lane">Data & Business Operations</span><span class="track"><span class="bar ms" style="left:32%;width:58%">Work Order Cleanup & KPIs</span></span><span class="count">1 XLSX · 1 PDF</span></a><a class="row" href="#audio-eval" data-tab="ai-product"><span class="lane">AI Evaluation</span><span class="track"><span class="bar ms" style="left:42%;width:50%">AI Audio Evaluation Kit</span></span><span class="count">1 PDF · 1 XLSX</span></a><a class="row" href="#sif-sample-box" data-tab="ai-product"><span class="lane">Product Ownership</span><span class="track"><span class="bar ms" style="left:50%;width:46%">SIF'S Sample Box</span></span><span class="count">Case study</span></a>
+  <p class="ledger-foot">Laid out like a Gantt chart, because that's what I build. Every workbook downloads free and opens in Excel or Google Sheets.</p>
+ </div>
+</div></header>
+
+<section class="block" id="how"><div class="wrap">
+ <div class="sec-head"><h2>How I work</h2></div>
+ <div class="how">
+  <div><h3>Rules before spreadsheets</h3><p>I write down in plain English what "late," "at risk" or "ready" means before building anything. Then the tracker enforces the rule instead of someone's memory.</p></div>
+  <div><h3>Enter it once</h3><p>Each fact gets typed in one place and flows everywhere else. The files use formulas only, no macros, so they open in Excel, Excel Online or Google Sheets.</p></div>
+  <div><h3>AI as a teammate, not an author</h3><p>I use AI the way I'd use a fast junior teammate. I set the requirements, make the decisions and test the output. Claude (Anthropic) helped draft formulas, documents and this site. Every workbook was fully recalculated and checked for errors before it went up.</p></div>
+ </div>
+</div></section>
+
+<div id="work" class="anchor-work"></div>
+<div class="tabs-wrap"><div class="wrap"><div class="tablist" role="tablist" aria-label="Project areas"><a class="tab" role="tab" id="tab-coordination" href="#coordination" aria-controls="panel-coordination" aria-selected="true" tabindex="0">Project Coordination <span class="n">2 projects</span></a><a class="tab" role="tab" id="tab-operations" href="#operations" aria-controls="panel-operations" aria-selected="false" tabindex="-1">Data & Business Operations <span class="n">2 projects</span></a><a class="tab" role="tab" id="tab-ai-product" href="#ai-product" aria-controls="panel-ai-product" aria-selected="false" tabindex="-1">AI & Product <span class="n">2 projects</span></a></div></div></div>
+<section class="panel" id="panel-coordination" role="tabpanel" aria-labelledby="tab-coordination"><span id="coordination" class="anchor"></span><div class="wrap"><p class="panel-intro">Running projects day to day: schedules, budgets, logs, follow-ups and the status report. <b>One construction/facilities project and one IT project.</b></p></div>
+<article class="proj" id="project-control">
+ <div class="wrap">
+  <div class="proj-top">
+   <div>
+    <div class="kicker"><span class="tag lane">Project Coordination</span><span class="tag">Construction & facilities</span><span class="tag">Schedule</span><span class="tag">Budget</span><span class="tag">RFIs & change orders</span></div>
+    <h2>Office Build-Out & Move: Project Control Workbook</h2>
+    <p class="label" style="margin-top:8px">Renovating a 6,000 sq ft suite and moving a 45-person team</p>
+    <p class="summary">One workbook that runs a sample office renovation and move from start to finish, plus the everyday paperwork a coordinator writes along the way: charter, meeting minutes, a change request, follow-up emails and a weekly status report.</p>
+   </div>
+   <aside class="side" aria-label="Files for Office Build-Out &amp; Move: Project Control Workbook">
+    <h3>Files</h3><a class="dl" href="AdamJAsifo_Project_Control_Workbook.xlsx" download><span><b>Project Control Workbook</b><small>10 tabs · formulas only, no macros</small></span><span class="ext">XLSX</span></a><a class="dl" href="AdamJAsifo_Coordinator_Document_Pack.pdf" target="_blank" rel="noopener"><span><b>Coordinator Document Pack</b><small>Charter, minutes, change request, emails, closeout (6 pages)</small></span><span class="ext">PDF</span></a><a class="dl" href="AdamJAsifo_Weekly_Status_Report.pdf" target="_blank" rel="noopener"><span><b>Weekly Status Report</b><small>1 page, written by the workbook</small></span><span class="ext">PDF</span></a>
+    <dl><dt>Role</dt><dd>Project coordinator</dd><dt>Tools</dt><dd>Excel</dd><dt>For jobs like</dt><dd>Project Coordinator, Construction/Facilities PC, Project Administrator</dd></dl>
+   </aside>
+  </div>
+  <div class="cols">
+   <div><h3><span class="n">01</span>The problem</h3><p>A renovation has a lot of moving parts: an architect, a contractor, IT, furniture, movers. Something is always late, someone always has a question, and money keeps getting asked for. A coordinator's job is to keep one true picture of all of it and tell the boss what needs attention.</p>
+<p>When that picture lives in five separate lists, the Friday status email is out of date before it's sent.</p></div>
+   <div><h3><span class="n">02</span>What I built</h3><ul><li><b>Schedule with a Gantt chart</b>: 31 tasks in 6 phases. The bars color themselves by status.</li>
+<li><b>Budget</b> with <b>change orders</b> (requests for extra money). Approved ones come out of the contingency cushion.</li>
+<li><b>RFI &amp; submittal log</b> (questions to the architect, product approvals), a <b>RAID log</b> (risks, assumptions, issues and decisions) and <b>meeting action items</b>.</li>
+<li>A <b>dashboard</b> and a <b>weekly status report</b> that write themselves from the numbers.</li>
+<li>A 6-page <b>document pack</b>: project charter, meeting minutes, change request, follow-up email, status email and closeout checklist.</li></ul></div>
+   <div><h3><span class="n">03</span>How it works</h3><ul><li>One <b>status date</b> drives everything. Change it, and every task re-checks itself for that day.</li>
+<li>A task is <b>At Risk</b> when it's more than 15 points behind where it should be, and <b>Late</b> when it's past its finish date and not done.</li>
+<li>The project color follows written rules. A small <b>"Why this color?"</b> box on the dashboard shows exactly which rule is being hit.</li></ul>
+<div class="quote">Status report: "The project is 44% complete against a plan of 49%. 2 tasks are late and 2 are at risk. Forecast cost is $502,400 against a revised budget of $515,000 ($12,600 under). Move-in day is 59 days away."</div></div>
+   <div><h3><span class="n">04</span>How I built it</h3><p>I started from the end result, the Friday status report, and worked backward to what has to be tracked to write it. I wrote each rule in plain English first ("what counts as late?") and then turned it into a formula.</p>
+<p>I can do this math in my head for one task. But with 31 tasks, 8 budget lines and 4 logs, it's easy to miss something, so I'd rather have it built in and the same every time.</p></div>
+   <div><h3><span class="n">05</span>Where it comes from</h3><p>At MetroStar I tracked required training for staff, followed up on anything outstanding, and kept the records current in Excel and SharePoint. This is the same follow-through, applied to a whole project. I set it in construction and facilities because a lot of coordinator jobs around Baltimore and Columbia ask for RFIs, submittals and change orders by name.</p></div>
+   <div><h3><span class="n">06</span>What I'd do next</h3><p>Move the logs into a shared tool (SharePoint, Smartsheet or Microsoft Project) so the whole team can update them, and add a check for people booked on two tasks at once.</p></div>
+  </div>
+  <p class="trynow"><b>Try it yourself:</b> Open the workbook, go to the Dashboard and change the status date (yellow cell) to <b>Nov 20, 2026</b>. Nothing else gets updated, so 11 tasks turn Late and the project goes <b>Red</b>.</p>
+  <div class="shots one"><figure><a href="AdamJAsifo_screenshot_p1_gantt.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p1_gantt.png" width="1732" height="1105" alt="Schedule and Gantt: grey done, amber at risk, red late, navy milestones" loading="lazy"></a><figcaption>Schedule and Gantt: grey done, amber at risk, red late, navy milestones</figcaption></figure></div><div class="shots"><figure><a href="AdamJAsifo_screenshot_p1_dashboard.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p1_dashboard.png" width="1053" height="1291" alt="Dashboard: overall color, why it&#x27;s that color, key numbers and phase summary" loading="lazy"></a><figcaption>Dashboard: overall color, why it's that color, key numbers and phase summary</figcaption></figure><figure><a href="AdamJAsifo_screenshot_p1_status.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p1_status.png" width="1338" height="1306" alt="The weekly status report, written by formulas" loading="lazy"></a><figcaption>The weekly status report, written by formulas</figcaption></figure><figure><a href="AdamJAsifo_screenshot_p1_budget.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p1_budget.png" width="1759" height="1018" alt="Budget: approved change orders draw down contingency" loading="lazy"></a><figcaption>Budget: approved change orders draw down contingency</figcaption></figure></div>
+ </div>
+</article>
+<article class="proj" id="it-rollout">
+ <div class="wrap">
+  <div class="proj-top">
+   <div>
+    <div class="kicker"><span class="tag lane">IT Project Coordination</span><span class="tag">IT</span><span class="tag">Rollout</span><span class="tag">Asset tracking</span><span class="tag">Go / No-Go</span></div>
+    <h2>Laptop Refresh Rollout Tracker</h2>
+    <p class="label" style="margin-top:8px">Replacing 96 Windows 10 laptops in 3 waves</p>
+    <p class="summary">The tracker an IT project coordinator runs to swap out 96 aging laptops without losing anyone's files or leaving old laptops lying around. One row per laptop, a go/no-go gate before each wave, and the user emails and swap-day checklist that go with it.</p>
+   </div>
+   <aside class="side" aria-label="Files for Laptop Refresh Rollout Tracker">
+    <h3>Files</h3><a class="dl" href="AdamJAsifo_IT_Laptop_Rollout_Tracker.xlsx" download><span><b>Rollout Tracker</b><small>8 tabs · formulas only, no macros</small></span><span class="ext">XLSX</span></a><a class="dl" href="AdamJAsifo_IT_Rollout_Plan_and_User_Emails.pdf" target="_blank" rel="noopener"><span><b>Rollout Plan & User Emails</b><small>Plan, swap-day checklist, emails, status (3 pages)</small></span><span class="ext">PDF</span></a>
+    <dl><dt>Role</dt><dd>IT project coordinator</dd><dt>Tools</dt><dd>Excel, Microsoft 365</dd><dt>For jobs like</dt><dd>IT Project Coordinator, IT Coordinator, Implementation / Deployment Coordinator</dd></dl>
+   </aside>
+  </div>
+  <div class="cols">
+   <div><h3><span class="n">01</span>The problem</h3><p>Replacing laptops sounds simple until it's 96 people. Each one needs a time slot, their files moved, multi-factor sign-in working and their apps checked. Then the old laptop has to come back, get wiped and come off the asset list. Miss one step and you get lost files, unhappy users, or a laptop with company data that nobody can find.</p></div>
+   <div><h3><span class="n">02</span>What I built</h3><ul><li><b>Device tracker</b>: one row per laptop, moving from Scheduled → Imaged → Delivered → Data Migrated → Signed Off (or Blocked, with a reason).</li>
+<li><b>Wave plan</b> with a <b>go/no-go gate</b> for each wave, explained in plain English.</li>
+<li><b>Issue log</b> with severity and target dates, a <b>daily plan-vs-actual log</b> with a chart, and a <b>user communication plan</b>.</li>
+<li>A 3-page <b>rollout plan</b>: who does what, a swap-day checklist, two user emails and a weekly status email.</li></ul></div>
+   <div><h3><span class="n">03</span>How it works</h3><ul><li>A user is <b>Ready</b> only when their backup is confirmed and MFA (multi-factor sign-in) is set up. Nobody gets swapped without both.</li>
+<li>A signed-off laptop only counts as <b>compliant</b> when BitLocker encryption is on, the old laptop is back <i>and</i> wiped, and the asset list is updated. Right now 65% are; the rest are on the follow-up list.</li>
+<li>The next wave can start only if the last one is 95%+ done, no blocking issue is open, and 95%+ of its users are ready.</li></ul>
+<div class="quote">Wave 3: NO-GO. "Prior wave 35% done (need 95%). 1 Sev1 issue open. Users ready 41% (need 95%)."</div></div>
+   <div><h3><span class="n">04</span>How I built it</h3><p>I listed every step a single laptop has to go through, from ordering to the old one being wiped, and gave each step a column. Then I added the rules a manager would ask about: is this person ready, is this laptop really done, can the next group start? The pilot wave goes first on purpose, so the problems (old docking stations, an MFA sign-in quirk) show up with 12 people instead of 96.</p></div>
+   <div><h3><span class="n">05</span>Where it comes from</h3><p>At MetroStar I handled account access, password resets and Microsoft 365 problems for staff and clients, so I've seen the sign-in and access problems people run into. My CompTIA Security+ is why the security checks (MFA, encryption, wiping old drives, asset records) are part of the definition of "done" and not an afterthought.</p></div>
+   <div><h3><span class="n">06</span>What I'd do next</h3><p>Connect the tracker to a SharePoint list so technicians update it from their phones on swap day, and send automatic reminders for unreturned laptops.</p></div>
+  </div>
+  <p class="trynow"><b>Try it yourself:</b> In the Issue_Log tab, change ISS-03 to <b>Resolved</b> (with a resolved date). The Sev1 count drops to zero and Wave 3's list of reasons for NO-GO gets shorter.</p>
+  <div class="shots one"><figure><a href="AdamJAsifo_screenshot_p2_devices.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p2_devices.png" width="1747" height="1299" alt="Device tracker: one row per laptop with readiness, security checks and flags" loading="lazy"></a><figcaption>Device tracker: one row per laptop with readiness, security checks and flags</figcaption></figure></div><div class="shots"><figure><a href="AdamJAsifo_screenshot_p2_dashboard.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p2_dashboard.png" width="1223" height="1293" alt="Rollout dashboard: progress vs. plan, why it&#x27;s Amber, wave gates and open issues" loading="lazy"></a><figcaption>Rollout dashboard: progress vs. plan, why it's Amber, wave gates and open issues</figcaption></figure><figure><a href="AdamJAsifo_screenshot_p2_waves.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p2_waves.png" width="1766" height="465" alt="Wave plan: each wave&#x27;s go/no-go gate, explained in words" loading="lazy"></a><figcaption>Wave plan: each wave's go/no-go gate, explained in words</figcaption></figure><figure><a href="AdamJAsifo_screenshot_p2_daily.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p2_daily.png" width="1751" height="719" alt="Daily log: laptops planned vs. signed off each day" loading="lazy"></a><figcaption>Daily log: laptops planned vs. signed off each day</figcaption></figure></div>
+ </div>
+</article></section><section class="panel" id="panel-operations" role="tabpanel" aria-labelledby="tab-operations"><span id="operations" class="anchor"></span><div class="wrap"><p class="panel-intro">Turning messy numbers into decisions. <b>The PMO report is the crossover</b>: project coordination and data analysis in one.</p></div>
+<article class="proj" id="pmo-portfolio">
+ <div class="wrap">
+  <div class="proj-top">
+   <div>
+    <div class="kicker"><span class="tag lane">Coordination × Data</span><span class="tag">PMO</span><span class="tag">Reporting</span><span class="tag">Data quality</span><span class="tag">Resources</span></div>
+    <h2>PMO Portfolio Report</h2>
+    <p class="label" style="margin-top:8px">10 projects, one monthly update each, one page for leadership</p>
+    <p class="summary">A small project management office (PMO) setup. Every project manager submits one update a month, and the workbook judges every project by the same rules, catches updates that don't add up, and rolls it all into one dashboard and a 2-page report for leadership.</p>
+   </div>
+   <aside class="side" aria-label="Files for PMO Portfolio Report">
+    <h3>Files</h3><a class="dl" href="AdamJAsifo_PMO_Portfolio_Report_Workbook.xlsx" download><span><b>Portfolio Report Workbook</b><small>7 tabs · formulas only, no macros</small></span><span class="ext">XLSX</span></a><a class="dl" href="AdamJAsifo_PMO_October_Portfolio_Report.pdf" target="_blank" rel="noopener"><span><b>October Portfolio Report</b><small>What leadership reads (2 pages)</small></span><span class="ext">PDF</span></a>
+    <dl><dt>Role</dt><dd>PMO / project coordinator, reporting analyst</dd><dt>Tools</dt><dd>Excel (lookups, SUMIFS/COUNTIFS, rules tables)</dd><dt>For jobs like</dt><dd>PMO Coordinator, Project Coordinator, Business / Reporting Analyst</dd></dl>
+   </aside>
+  </div>
+  <div class="cols">
+   <div><h3><span class="n">01</span>The problem</h3><p>When a company runs 10 projects at once, every project manager reports their own status, and almost everyone says "Green." Leadership can't tell which projects are actually in trouble until it's too late. Someone has to collect the updates, check them against the plan, and point to the few that need a conversation.</p></div>
+   <div><h3><span class="n">02</span>What I built</h3><ul><li><b>Project register</b>: each project's start date, planned finish and budget. This is the plan everything is measured against.</li>
+<li><b>Monthly updates</b>: 4 months of updates from 5 project managers, with automatic checks on each one.</li>
+<li><b>Rules tab</b>: the thresholds for Amber and Red, in one place.</li>
+<li><b>Resource load</b>: who is booked over capacity in the next three months.</li>
+<li>A <b>dashboard</b> you can switch by month, and a <b>2-page report</b> with the decisions leadership needs to make.</li></ul></div>
+   <div><h3><span class="n">03</span>How it works</h3><ul><li><b>Planned %</b> is simple: 50 days into a 100-day project, you should be about 50% done. The gap between reported % and planned % is the schedule variance.</li>
+<li>Every project gets the <b>same color rules</b>: Red at 15 or more points behind, more than 10% over budget, or a slip of more than 30 days.</li>
+<li>The workbook flags <b>"watermelons"</b> (reported Green, but the numbers say Amber or Red), <b>missing or late updates</b>, and <b>% complete that went backwards</b>.</li></ul>
+<div class="quote">October: 2 / 3 / 2 Green / Amber / Red across 8 active projects (one didn't send an update), and 2 watermelons. P-201 reported Green for four months straight while falling 24 points behind.</div></div>
+   <div><h3><span class="n">04</span>How I built it</h3><p>I designed it the way a PMO actually works: the register holds the plan, project managers only touch their own monthly row, and every judgment comes from the Rules tab, so nobody's project gets graded differently. I kept every calculation in its own labeled column so anyone can follow it.</p>
+<p>I can work out any one of these numbers by hand. But 10 projects × 12 months is 120 updates a year, and leadership needs every one judged the same way. A system does that without getting tired or playing favorites.</p></div>
+   <div><h3><span class="n">05</span>Where it comes from</h3><p>This combines the two things I'm best at: keeping track of lots of moving pieces (from MetroStar status tracking and coordinating events and club programs) and turning a pile of numbers into a clear recommendation (from the property comparisons I built at Profusion Real Estate).</p></div>
+   <div><h3><span class="n">06</span>What I'd do next</h3><p>Collect the monthly updates with a short Microsoft Form that feeds the sheet, and add a trend line per project so the drift is visible at a glance.</p></div>
+  </div>
+  <p class="trynow"><b>Try it yourself:</b> On the dashboard, switch the month (yellow cell) to <b>September 2026</b>. P-201 was already flagged as a watermelon then: reported Green, 13 points behind.</p>
+  <div class="shots one"><figure><a href="AdamJAsifo_screenshot_p3_dashboard.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p3_dashboard.png" width="1508" height="1291" alt="Portfolio dashboard: every project, the PM&#x27;s color vs. the calculated color, and flags" loading="lazy"></a><figcaption>Portfolio dashboard: every project, the PM's color vs. the calculated color, and flags</figcaption></figure></div><div class="shots"><figure><a href="AdamJAsifo_screenshot_p3_updates.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p3_updates.png" width="1762" height="890" alt="Monthly updates: each PM&#x27;s numbers checked against the plan and the rules" loading="lazy"></a><figcaption>Monthly updates: each PM's numbers checked against the plan and the rules</figcaption></figure><figure><a href="AdamJAsifo_screenshot_p3_resources.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p3_resources.png" width="1671" height="1300" alt="Resource load: who&#x27;s booked over 100% in the next three months" loading="lazy"></a><figcaption>Resource load: who's booked over 100% in the next three months</figcaption></figure></div>
+ </div>
+</article>
+<article class="proj" id="work-orders">
+ <div class="wrap">
+  <div class="proj-top">
+   <div>
+    <div class="kicker"><span class="tag lane">Data & Business Operations</span><span class="tag">Data cleanup</span><span class="tag">KPIs</span><span class="tag">Vendors</span><span class="tag">Recommendation</span></div>
+    <h2>Work Order Cleanup & KPI Dashboard</h2>
+    <p class="label" style="margin-top:8px">A messy quarterly export → clean numbers → a recommendation</p>
+    <p class="summary">One quarter of maintenance work orders for 4 apartment communities, exported with all the usual mess. I cleaned 324 raw rows with formulas (not by hand), logged every fix, built a KPI dashboard and wrote a 2-page memo with what to do about it.</p>
+   </div>
+   <aside class="side" aria-label="Files for Work Order Cleanup &amp; KPI Dashboard">
+    <h3>Files</h3><a class="dl" href="AdamJAsifo_Work_Order_Cleanup_KPI_Dashboard.xlsx" download><span><b>Cleanup & KPI Workbook</b><small>6 tabs · formulas only, no macros</small></span><span class="ext">XLSX</span></a><a class="dl" href="AdamJAsifo_Work_Order_Findings_Memo.pdf" target="_blank" rel="noopener"><span><b>Findings & Recommendations Memo</b><small>The answer on page one (2 pages)</small></span><span class="ext">PDF</span></a>
+    <dl><dt>Role</dt><dd>Operations / data analyst</dd><dt>Tools</dt><dd>Excel (lookup tables, TRIM/EXACT, AVERAGEIFS, dashboards)</dd><dt>For jobs like</dt><dd>Operations Analyst, Business Operations, Data / Reporting Coordinator, Property Operations</dd></dl>
+   </aside>
+  </div>
+  <div class="cols">
+   <div><h3><span class="n">01</span>The problem</h3><p>Real data is messy. The same property is spelled four different ways, one person types "P1" and another types "Emergency," costs come through as text, and some rows are exported twice. Until that's fixed, any total or average is wrong, and decisions get made on bad numbers.</p></div>
+   <div><h3><span class="n">02</span>What I built</h3><ul><li><b>Raw export</b>, kept exactly as it came out of the system. I never edit it.</li>
+<li><b>Cleanup rules</b>: lookup tables that turn every spelling into one standard name.</li>
+<li><b>Clean data</b>: every row standardized by formulas, with duplicates and bad dates flagged and days-to-complete calculated.</li>
+<li>A <b>data quality log</b> showing how many rows had each problem and how it was handled.</li>
+<li>A <b>KPI dashboard</b> by property, vendor, category, priority and month, plus a <b>2-page memo</b> with recommendations.</li></ul></div>
+   <div><h3><span class="n">03</span>How it works</h3><ul><li><b>207 of 324 raw rows</b> needed at least one fix, including 14 duplicates. 310 clean work orders went into the numbers.</li>
+<li>"Per 100 units" makes a 60-unit property and a 120-unit property fair to compare.</li>
+<li>If next quarter's export has a spelling the rules haven't seen, a <b>"couldn't map"</b> check turns red instead of quietly miscounting.</li></ul>
+<div class="quote">Memo: "HVAC is 29% of work orders but 60% of maintenance spend… the main HVAC vendor hits its response target only 53% of the time."</div></div>
+   <div><h3><span class="n">04</span>How I built it</h3><p>I kept the raw data untouched and did every fix as a rule, so the cleanup can be checked and repeated. Next quarter you paste in the new export and every number updates. Then I asked the questions a manager would ask: where's the money going, who's slow, and is any property different? I wrote the memo with the answer first.</p></div>
+   <div><h3><span class="n">05</span>Where it comes from</h3><p>I've worked on the property side: at Profusion Real Estate I compared properties in Excel and helped set up and furnish rental units. Working at The Hall CP and Holy Cross Hospital also showed me how much depends on records being entered the same way every time. The memo's last recommendation (drop-down lists so the data comes in clean) comes from that.</p></div>
+   <div><h3><span class="n">06</span>What I'd do next</h3><p>Rebuild the same steps in Power Query so the cleanup runs with one refresh, and add a month-over-month view once there are two quarters of data.</p></div>
+  </div>
+  <p class="trynow"><b>Try it yourself:</b> In Raw_Export, change a property name to <b>oakview apts</b>: Clean_Data still reads "Oakview Apartments." Type a brand-new misspelling and the Data_Quality_Log's "couldn't map" check turns red.</p>
+  <div class="shots one"><figure><a href="AdamJAsifo_screenshot_p4_dashboard.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p4_dashboard.png" width="1738" height="1297" alt="KPI dashboard: volume, speed, on-time % and spend by property, vendor, category and priority" loading="lazy"></a><figcaption>KPI dashboard: volume, speed, on-time % and spend by property, vendor, category and priority</figcaption></figure></div><div class="shots"><figure><a href="AdamJAsifo_screenshot_p4_quality.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p4_quality.png" width="1597" height="815" alt="Data quality log: every problem found and how it was handled" loading="lazy"></a><figcaption>Data quality log: every problem found and how it was handled</figcaption></figure><figure><a href="AdamJAsifo_screenshot_p4_raw.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p4_raw.png" width="1761" height="1278" alt="Before: the raw export, exactly as it came out" loading="lazy"></a><figcaption>Before: the raw export, exactly as it came out</figcaption></figure><figure><a href="AdamJAsifo_screenshot_p4_clean.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p4_clean.png" width="1683" height="1296" alt="After: clean data built by formulas, with notes on what was fixed" loading="lazy"></a><figcaption>After: clean data built by formulas, with notes on what was fixed</figcaption></figure></div>
+ </div>
+</article></section><section class="panel" id="panel-ai-product" role="tabpanel" aria-labelledby="tab-ai-product"><span id="ai-product" class="anchor"></span><div class="wrap"><p class="panel-intro">Judging AI output consistently, and planning a product from scratch.</p></div>
+<article class="proj" id="audio-eval">
+ <div class="wrap">
+  <div class="proj-top">
+   <div>
+    <div class="kicker"><span class="tag lane">AI Evaluation</span><span class="tag">Rubric design</span><span class="tag">Quality assurance</span><span class="tag">Consistency</span><span class="tag">Audio</span></div>
+    <h2>AI Audio Evaluation Kit</h2>
+    <p class="label" style="margin-top:8px">Scoring AI-generated music the same way every time</p>
+    <p class="summary">Guidelines and a scoring workbook for judging AI-generated music clips: a weighted rubric with written examples for each score, 12 named failure types, rules for tricky cases, and a check that measures whether my scores hold up when I re-score the same clips five or more days later.</p>
+   </div>
+   <aside class="side" aria-label="Files for AI Audio Evaluation Kit">
+    <h3>Files</h3><a class="dl" href="AdamJAsifo_AI_Audio_Evaluation_Guidelines.pdf" target="_blank" rel="noopener"><span><b>Evaluation Guidelines</b><small>Protocol, rubric, failure types, edge cases (4 pages)</small></span><span class="ext">PDF</span></a><a class="dl" href="AdamJAsifo_AI_Audio_Scoring_Workbook.xlsx" download><span><b>Scoring Workbook</b><small>7 tabs · formulas only, no macros · sample scores</small></span><span class="ext">XLSX</span></a>
+    <dl><dt>Role</dt><dd>AI evaluator / QA</dd><dt>Tools</dt><dd>Critical listening, Excel</dd><dt>For jobs like</dt><dd>AI Trainer, AI Evaluator, Audio / Transcription QA</dd></dl>
+   </aside>
+  </div>
+  <div class="cols">
+   <div><h3><span class="n">01</span>The problem</h3><p>Evaluating AI output is judgment work, and judgment is only useful if it's consistent. Two reviewers, or the same reviewer a few days later, should give the same clip the same score for the same reasons, and name the exact problem so engineers can fix it.</p></div>
+   <div><h3><span class="n">02</span>What I built</h3><ul><li><b>Guidelines (PDF)</b>: listening setup, a 6-part rubric with written 1/3/5 examples, automatic-fail rules, 12 failure codes with "don't confuse it with" notes, 8 tricky-case rules, and weak vs. strong written explanations.</li>
+<li><b>Scoring workbook</b>: weighted scores, pass/fail, failure counts by model, a model-vs-model dashboard and a consistency check.</li>
+<li>An appendix on <b>lyric transcription</b>, from preparing lyrics for a 15-song distribution project.</li></ul></div>
+   <div><h3><span class="n">03</span>How it works</h3><ul><li>Each clip gets a 1–5 score on six things (prompt match, structure, mix, artifacts, vocals, timing), weighted into one score.</li>
+<li>Every problem gets a <b>code and a timestamp</b>, e.g. F01 "drums lose their attack" at 0:12.</li>
+<li>Re-scoring 10 clips later shows how often my scores matched and drifted, using a standard agreement measure (weighted kappa). The sample scores miss a couple of the targets, which shows what the warnings look like.</li></ul>
+<div class="quote">Tricky-case rule: "Saturated 808s in trap and drill are expected. Tag F07 only if the distortion spreads to other elements or crackles at peaks beyond what the genre expects."</div></div>
+   <div><h3><span class="n">04</span>How I built it</h3><p>I wrote the score descriptions before listening to anything, so the rubric decides the scores and not the other way around. For each failure type I wrote what it sounds like and what it's easily confused with, because that's where reviewers disagree. The workbook comes with a sample batch of scores so every formula has something to show; they're labeled as samples, not real results.</p></div>
+   <div><h3><span class="n">05</span>Where it comes from</h3><p>This comes from my audio work: setting up and recording sessions as a Technical Operations Intern at WMUC (watching gain staging, catching clipping, tracing problems in the signal chain), producing music in Logic Pro, FL Studio, Ableton Live and Ardour (including a self-released album), and preparing lyrics for a 15-song distribution project, where keeping dialect spellings consistent was the hardest part.</p></div>
+   <div><h3><span class="n">06</span>What I'd do next</h3><p>Give the guidelines to a second reviewer, have us both score the same clips separately, and use the consistency check to find where we disagree and tighten those rules.</p></div>
+  </div>
+  <p class="trynow"><b>Try it yourself:</b> On the Rubric tab, change any weight so they no longer add up to 100%. The check next to the total turns red: <b>"Weights must add up to 100%."</b></p>
+  <div class="shots"><figure><a href="AdamJAsifo_screenshot_p5_dashboard.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p5_dashboard.png" width="1695" height="955" alt="Evaluation dashboard (sample scores): model comparison and top failure types" loading="lazy"></a><figcaption>Evaluation dashboard (sample scores): model comparison and top failure types</figcaption></figure><figure><a href="AdamJAsifo_screenshot_p5_rubric.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p5_rubric.png" width="1660" height="1297" alt="Rubric with written examples for each score, plus the failure codes" loading="lazy"></a><figcaption>Rubric with written examples for each score, plus the failure codes</figcaption></figure><figure><a href="AdamJAsifo_screenshot_p5_consistency.png" target="_blank" rel="noopener"><img src="AdamJAsifo_screenshot_p5_consistency.png" width="1700" height="1288" alt="Consistency check: how well scores match when re-scored later" loading="lazy"></a><figcaption>Consistency check: how well scores match when re-scored later</figcaption></figure></div>
+ </div>
+</article>
+<article class="proj" id="sif-sample-box">
+ <div class="wrap">
+  <div class="proj-top">
+   <div>
+    <div class="kicker"><span class="tag lane">Product Ownership</span><span class="tag">Requirements</span><span class="tag">Decision log</span><span class="tag">AI-assisted build</span><span class="tag">macOS</span></div>
+    <h2>SIF'S Sample Box</h2>
+    <p class="label" style="margin-top:8px">Planning a Mac app from a problem in my own workflow</p>
+    <p class="summary">A personal product project: a focused Mac app that prepares audio samples, cuts loops, maps them to pads and hands them off to a music program. This case study covers how I defined it, made the decisions and planned an AI-assisted build. The app is in development.</p>
+   </div>
+   <aside class="side" aria-label="Files for SIF&#x27;S Sample Box">
+    <h3>Files</h3><p style="margin:0;font-size:.88rem;color:var(--ink-2)">No downloads: the app is still being built. This write-up covers the planning and decision work.</p>
+    <dl><dt>Role</dt><dd>Founder & product lead</dd><dt>Tools</dt><dd>AI research and drafting, requirements documents, build planning</dd><dt>Status</dt><dd>In development</dd></dl>
+   </aside>
+  </div>
+  <div class="cols">
+   <div><h3><span class="n">01</span>The problem</h3><p>In my own music production, getting samples ready took longer than making music: cleaning up the audio, finding the tempo and key, cutting usable loops, mapping them to pads. The big music programs can do all of it, but only through a dozen steps spread across menus. I wanted one tool that does the prep and hands off.</p></div>
+   <div><h3><span class="n">02</span>What I built</h3><ul><li>A written <b>boundary</b> first: this is <b>not</b> a full music program. No tracks, mixer, plug-ins, mastering, accounts or cloud.</li>
+<li>A <b>14-document specification package</b>: vision and requirements, five ranked priorities, a ten-step build plan, six research areas and a summary.</li>
+<li>A <b>decision log</b> marking every decision as locked, testable, open, deferred, rejected or withdrawn, with the reason.</li>
+<li>A <b>licensing review</b>: which audio code libraries can't be used and what to use instead.</li></ul></div>
+   <div><h3><span class="n">03</span>How it works</h3><ul><li>Priorities are ranked, so every trade-off has a default answer.</li>
+<li>The build is split into ten steps. Each one has to show working proof before the next starts.</li>
+<li>The plan is built to prevent the three worst failures for an audio app: glitches, lost work, and output that's confidently wrong.</li></ul></div>
+   <div><h3><span class="n">04</span>How I built it</h3><p>I used AI tools for research and drafting and treated them like a fast junior teammate. My rule was to never cite a source nobody actually opened. When the package was done, I answered 12 decisions myself, then had a second AI tool check the whole package against my answers and flag conflicts instead of settling them quietly.</p></div>
+   <div><h3><span class="n">05</span>Where it comes from</h3><p>This project taught me the most about coordination. Writing down what the product <i>isn't</i> saved more time than any feature idea. A decision log stops the same questions from being argued every week. And a plan is only as good as its definition of "done" for each step.</p></div>
+   <div><h3><span class="n">06</span>What I'd do next</h3><p>Build the audio-prep core (the first steps of the plan) and test it on my own sample library before adding anything else.</p></div>
+  </div>
+  
+  
+ </div>
+</article></section>
+
+<section class="block" id="about"><div class="wrap">
+ <div class="about">
+  <div>
+   <div class="sec-head"><h2>About</h2></div>
+   <p>My work has mostly sat between systems and the people using them. At <b>MetroStar</b> I've coordinated deliverables and follow-ups, tracked required training, kept records current in Excel and SharePoint, and handled account and Microsoft 365 support. At <b>Profusion Real Estate</b> I built property comparisons and coordinated rental setups. At <b>Holy Cross Hospital</b> I managed visitor access in a regulated environment, and at <b>The Hall CP</b> I worked high-volume service and events and trained new staff.</p>
+   <p>As a Technical Operations Intern at <b>WMUC</b> radio I scheduled, set up and recorded studio sessions. I was Vice President of Education for the Maryland Cybersecurity Club and coordinated events for the Maryland Music Business Society. Outside of work I produce music (a self-released album and a 15-song distribution project).</p>
+  </div>
+  <div class="contact" id="contact">
+   <h3>Let's talk</h3>
+   <p>I'm looking for project coordinator, IT project coordinator, operations and business analysis roles. Email is the best way to reach me:</p>
+   <div class="row2"><span class="addr" id="email-text">adamjasifo@gmail.com</span><button class="copy" id="copy-email" type="button" data-email="adamjasifo@gmail.com">Copy</button></div>
+   <p><a href="mailto:adamjasifo@gmail.com" style="color:inherit">Open in your email app →</a></p>
+   <p><a href="AdamJAsifo_Resume.pdf" target="_blank" rel="noopener" style="color:inherit">Download my résumé (PDF) →</a></p>
+  </div>
+ </div>
+</div></section>
+<footer><div class="wrap">© 2026 Adam Asifo. Project scenarios, companies, names and figures are fictional samples built to show how I work. Built with help from Claude (Anthropic).</div></footer>
+<script>
+(function(){
+  var doc=document.documentElement; doc.classList.add('js');
+  var nav=document.querySelector('.nav'), bar=document.querySelector('.tabs-wrap');
+  function fit(){ if(nav&&bar){ bar.style.top=nav.offsetHeight+'px'; var m=nav.offsetHeight+bar.offsetHeight+16;
+    [].slice.call(document.querySelectorAll('article.proj')).forEach(function(a){a.style.scrollMarginTop=m+'px';}); } }
+  fit(); window.addEventListener('resize',fit);
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var ids=tabs.map(function(t){return t.getAttribute('href').slice(1);});
+  var projTab={}; [].slice.call(document.querySelectorAll('.panel')).forEach(function(p){
+    var t=p.id.replace('panel-',''); [].slice.call(p.querySelectorAll('article.proj')).forEach(function(a){projTab[a.id]=t;});});
+  function show(t,focus){
+    tabs.forEach(function(b){var on=b.getAttribute('href')==='#'+t; b.setAttribute('aria-selected',on?'true':'false'); b.tabIndex=on?0:-1; if(on&&focus)b.focus();});
+    ids.forEach(function(id){var p=document.getElementById('panel-'+id); if(p) p.hidden=(id!==t);});
+    try{localStorage.setItem('lastTab',t);}catch(e){}
+  }
+  function go(hash,scroll){
+    var h=(hash||'').replace('#','');
+    if(ids.indexOf(h)>-1){show(h); if(scroll){document.getElementById('work').scrollIntoView();} return true;}
+    if(projTab[h]){show(projTab[h]); var el=document.getElementById(h); if(el&&scroll){el.scrollIntoView();} return true;}
+    return false;
+  }
+  tabs.forEach(function(b,i){
+    b.addEventListener('click',function(e){e.preventDefault(); var t=b.getAttribute('href').slice(1); show(t);
+      if(history.replaceState){history.replaceState(null,'','#'+t);}
+      var w=document.getElementById('work'); if(w.getBoundingClientRect().top<0){w.scrollIntoView();}});
+    b.addEventListener('keydown',function(e){var k=e.key, j=null;
+      if(k==='ArrowRight')j=(i+1)%tabs.length; else if(k==='ArrowLeft')j=(i-1+tabs.length)%tabs.length; else if(k==='Home')j=0; else if(k==='End')j=tabs.length-1;
+      if(j!==null){e.preventDefault(); var t=tabs[j].getAttribute('href').slice(1); show(t,true); if(history.replaceState){history.replaceState(null,'','#'+t);}}});
+  });
+  [].slice.call(document.querySelectorAll('a[href^="#"]')).forEach(function(a){
+    if(a.classList.contains('tab'))return;
+    a.addEventListener('click',function(e){var h=a.getAttribute('href'); if(projTab[h.slice(1)]||ids.indexOf(h.slice(1))>-1){e.preventDefault(); go(h,true); if(history.replaceState){history.replaceState(null,'',h);}}});
+  });
+  window.addEventListener('hashchange',function(){go(location.hash,true);});
+  doc.style.scrollBehavior='auto';
+  if(!go(location.hash,true)){show(ids[0]);}
+  window.addEventListener('load',function(){ if(location.hash){go(location.hash,true);} setTimeout(function(){doc.style.scrollBehavior='';},50); });
+  var c=document.getElementById('copy-email');
+  if(c){c.addEventListener('click',function(){var t=c.getAttribute('data-email');
+    function done(){c.textContent='Copied';setTimeout(function(){c.textContent='Copy';},1600);}
+    function sel(){var r=document.createRange(); r.selectNodeContents(document.getElementById('email-text')); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); c.textContent='Selected: press Ctrl/Cmd+C';}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,sel);}else{sel();}});}
+})();
+</script></body></html>
